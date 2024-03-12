@@ -97,6 +97,7 @@ int loadData(struct st_class* c[]){
 		if(r < 4) break;
 		count++;
 	}
+
 	fclose(file);
 	return count;
 }
