@@ -215,16 +215,35 @@ int applyMyClasses(int my[], int msize, struct st_class* c[], int csize) {
 }
 
 
-void printMyClasses(int my[], int msize, struct st_class* c[], int csize){
-
-
-	
-
+void printMyClasses(int my[], int msize, struct st_class* c[], int csize) {
+    printf("My Classes:\n");
+    for (int i = 0; i < msize; i++) {
+        for (int j = 0; j < csize; j++) {
+            if (my[i] == c[j]->code) {
+                printf("[%d] %s [credit %d - %s]\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
+                break;
+            }
+        }
+    }
 }
 
-void saveMyClass(int my[], int msize, struct st_class* c[], int csize){
+void saveMyClass(int my[], int msize, struct st_class* c[], int csize) {
+    FILE* file;
+    file = fopen("my_classes.txt", "w");
+    if (file == NULL) {
+        printf("Error opening file.\n");
+        return;
+    }
 
+    fprintf(file, "My Classes:\n");
+    for (int i = 0; i < msize; i++) {
+        for (int j = 0; j < csize; j++) {
+            if (my[i] == c[j]->code) {
+                fprintf(file, "[%d] %s [credit %d - %s]\n", c[j]->code, c[j]->name, c[j]->unit, kname[c[j]->grading - 1]);
+                break;
+            }
+        }
+    }
 
-
-	
+    fclose(file);
 }
